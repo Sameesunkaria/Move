@@ -10,10 +10,14 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 import CoreMotion
+import HealthKit
 
 class InterfaceController: WKInterfaceController {
     
     @IBOutlet var interfaceGroup: WKInterfaceGroup!
+
+    var workoutSession: HKWorkoutSession?
+    let healthStore = HKHealthStore()
     
     let manager = CMMotionManager()
     
@@ -57,8 +61,17 @@ extension InterfaceController: WCSessionDelegate {
         manager.deviceMotionUpdateInterval = sampleInterval
         
         if !movementIsStarted {
-            
+
             DispatchQueue.main.async {
+                let workoutConfiguration = HKWorkoutConfiguration()
+                workoutConfiguration.activityType = .other
+                workoutConfiguration.locationType = .indoor
+
+                if self.workoutSession == nil {
+                    self.workoutSession = try? HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
+            }
+
+
                 self.interfaceGroup.setBackgroundColor(.red)
             }
             
@@ -107,6 +120,11 @@ extension InterfaceController: WCSessionDelegate {
             accelerationAlongZBuffer = []
             
             movementIsStarted = false
+
+            DispatchQueue.main.async {
+                self.workoutSession?.end()
+                self.workoutSession = nil
+            }
         }
         
     }
