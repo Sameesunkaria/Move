@@ -13,7 +13,57 @@
 		30CD4FA5224CF80D00AB3A55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CD4FA3224CF80D00AB3A55 /* Main.storyboard */; };
 		30CD4FA7224CF81100AB3A55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30CD4FA6224CF81100AB3A55 /* Assets.xcassets */; };
 		30CD4FAA224CF81100AB3A55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CD4FA8224CF81100AB3A55 /* LaunchScreen.storyboard */; };
+		3313FD3F224FB50700005A01 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3313FD3D224FB50700005A01 /* Interface.storyboard */; };
+		3313FD41224FB50900005A01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3313FD40224FB50900005A01 /* Assets.xcassets */; };
+		3313FD48224FB50900005A01 /* MoveWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3313FD47224FB50900005A01 /* MoveWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3313FD4D224FB50900005A01 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313FD4C224FB50900005A01 /* InterfaceController.swift */; };
+		3313FD4F224FB50900005A01 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313FD4E224FB50900005A01 /* ExtensionDelegate.swift */; };
+		3313FD51224FB50900005A01 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313FD50224FB50900005A01 /* NotificationController.swift */; };
+		3313FD53224FB50900005A01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3313FD52224FB50900005A01 /* Assets.xcassets */; };
+		3313FD58224FB50900005A01 /* MoveWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3313FD3B224FB50700005A01 /* MoveWatch.app */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3313FD49224FB50900005A01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30CD4F94224CF80D00AB3A55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3313FD46224FB50900005A01;
+			remoteInfo = "MoveWatch Extension";
+		};
+		3313FD56224FB50900005A01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30CD4F94224CF80D00AB3A55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3313FD3A224FB50700005A01;
+			remoteInfo = MoveWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3313FD5E224FB50900005A01 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3313FD48224FB50900005A01 /* MoveWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3313FD60224FB50900005A01 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3313FD58224FB50900005A01 /* MoveWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		23100882224E31F500D5A5E9 /* RunningBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningBuffer.swift; sourceTree = "<group>"; };
@@ -24,10 +74,28 @@
 		30CD4FA6224CF81100AB3A55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30CD4FA9224CF81100AB3A55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30CD4FAB224CF81100AB3A55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3313FD3B224FB50700005A01 /* MoveWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoveWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3313FD3E224FB50700005A01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		3313FD40224FB50900005A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3313FD42224FB50900005A01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3313FD47224FB50900005A01 /* MoveWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MoveWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3313FD4C224FB50900005A01 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		3313FD4E224FB50900005A01 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		3313FD50224FB50900005A01 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		3313FD52224FB50900005A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3313FD54224FB50900005A01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3313FD55224FB50900005A01 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		30CD4F99224CF80D00AB3A55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3313FD44224FB50900005A01 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				30CD4F9E224CF80D00AB3A55 /* Move */,
+				3313FD3C224FB50700005A01 /* MoveWatch */,
+				3313FD4B224FB50900005A01 /* MoveWatch Extension */,
 				30CD4F9D224CF80D00AB3A55 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				30CD4F9C224CF80D00AB3A55 /* Move.app */,
+				3313FD3B224FB50700005A01 /* MoveWatch.app */,
+				3313FD47224FB50900005A01 /* MoveWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +139,29 @@
 			path = Move;
 			sourceTree = "<group>";
 		};
+		3313FD3C224FB50700005A01 /* MoveWatch */ = {
+			isa = PBXGroup;
+			children = (
+				3313FD3D224FB50700005A01 /* Interface.storyboard */,
+				3313FD40224FB50900005A01 /* Assets.xcassets */,
+				3313FD42224FB50900005A01 /* Info.plist */,
+			);
+			path = MoveWatch;
+			sourceTree = "<group>";
+		};
+		3313FD4B224FB50900005A01 /* MoveWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3313FD4C224FB50900005A01 /* InterfaceController.swift */,
+				3313FD4E224FB50900005A01 /* ExtensionDelegate.swift */,
+				3313FD50224FB50900005A01 /* NotificationController.swift */,
+				3313FD52224FB50900005A01 /* Assets.xcassets */,
+				3313FD54224FB50900005A01 /* Info.plist */,
+				3313FD55224FB50900005A01 /* PushNotificationPayload.apns */,
+			);
+			path = "MoveWatch Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,15 +172,51 @@
 				30CD4F98224CF80D00AB3A55 /* Sources */,
 				30CD4F99224CF80D00AB3A55 /* Frameworks */,
 				30CD4F9A224CF80D00AB3A55 /* Resources */,
+				3313FD60224FB50900005A01 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3313FD57224FB50900005A01 /* PBXTargetDependency */,
 			);
 			name = Move;
 			productName = Move;
 			productReference = 30CD4F9C224CF80D00AB3A55 /* Move.app */;
 			productType = "com.apple.product-type.application";
+		};
+		3313FD3A224FB50700005A01 /* MoveWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3313FD5F224FB50900005A01 /* Build configuration list for PBXNativeTarget "MoveWatch" */;
+			buildPhases = (
+				3313FD39224FB50700005A01 /* Resources */,
+				3313FD5E224FB50900005A01 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3313FD4A224FB50900005A01 /* PBXTargetDependency */,
+			);
+			name = MoveWatch;
+			productName = MoveWatch;
+			productReference = 3313FD3B224FB50700005A01 /* MoveWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		3313FD46224FB50900005A01 /* MoveWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3313FD5D224FB50900005A01 /* Build configuration list for PBXNativeTarget "MoveWatch Extension" */;
+			buildPhases = (
+				3313FD43224FB50900005A01 /* Sources */,
+				3313FD44224FB50900005A01 /* Frameworks */,
+				3313FD45224FB50900005A01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MoveWatch Extension";
+			productName = "MoveWatch Extension";
+			productReference = 3313FD47224FB50900005A01 /* MoveWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -98,6 +229,12 @@
 				ORGANIZATIONNAME = samar;
 				TargetAttributes = {
 					30CD4F9B224CF80D00AB3A55 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					3313FD3A224FB50700005A01 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					3313FD46224FB50900005A01 = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -116,6 +253,8 @@
 			projectRoot = "";
 			targets = (
 				30CD4F9B224CF80D00AB3A55 /* Move */,
+				3313FD3A224FB50700005A01 /* MoveWatch */,
+				3313FD46224FB50900005A01 /* MoveWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +267,23 @@
 				30CD4FAA224CF81100AB3A55 /* LaunchScreen.storyboard in Resources */,
 				30CD4FA7224CF81100AB3A55 /* Assets.xcassets in Resources */,
 				30CD4FA5224CF80D00AB3A55 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3313FD39224FB50700005A01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3313FD41224FB50900005A01 /* Assets.xcassets in Resources */,
+				3313FD3F224FB50700005A01 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3313FD45224FB50900005A01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3313FD53224FB50900005A01 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +300,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3313FD43224FB50900005A01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3313FD51224FB50900005A01 /* NotificationController.swift in Sources */,
+				3313FD4F224FB50900005A01 /* ExtensionDelegate.swift in Sources */,
+				3313FD4D224FB50900005A01 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3313FD4A224FB50900005A01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3313FD46224FB50900005A01 /* MoveWatch Extension */;
+			targetProxy = 3313FD49224FB50900005A01 /* PBXContainerItemProxy */;
+		};
+		3313FD57224FB50900005A01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3313FD3A224FB50700005A01 /* MoveWatch */;
+			targetProxy = 3313FD56224FB50900005A01 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		30CD4FA3224CF80D00AB3A55 /* Main.storyboard */ = {
@@ -161,6 +340,14 @@
 				30CD4FA9224CF81100AB3A55 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3313FD3D224FB50700005A01 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3313FD3E224FB50700005A01 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -287,7 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				INFOPLIST_FILE = Move/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,7 +492,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				INFOPLIST_FILE = Move/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -315,6 +502,88 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3313FD59224FB50900005A01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47YH33JD86;
+				IBSC_MODULE = MoveWatch_Extension;
+				INFOPLIST_FILE = MoveWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.designers.Move.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		3313FD5A224FB50900005A01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47YH33JD86;
+				IBSC_MODULE = MoveWatch_Extension;
+				INFOPLIST_FILE = MoveWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.designers.Move.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		3313FD5B224FB50900005A01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47YH33JD86;
+				INFOPLIST_FILE = "MoveWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.designers.Move.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		3313FD5C224FB50900005A01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 47YH33JD86;
+				INFOPLIST_FILE = "MoveWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.designers.Move.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
 			name = Release;
 		};
@@ -335,6 +604,24 @@
 			buildConfigurations = (
 				30CD4FAF224CF81100AB3A55 /* Debug */,
 				30CD4FB0224CF81100AB3A55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3313FD5D224FB50900005A01 /* Build configuration list for PBXNativeTarget "MoveWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3313FD5B224FB50900005A01 /* Debug */,
+				3313FD5C224FB50900005A01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3313FD5F224FB50900005A01 /* Build configuration list for PBXNativeTarget "MoveWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3313FD59224FB50900005A01 /* Debug */,
+				3313FD5A224FB50900005A01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

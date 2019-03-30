@@ -7,15 +7,38 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        session.sendMessage(["message" : "Hello"], replyHandler: nil, errorHandler: nil)
+        print("Watch connectivity session activationDidComplete")
+    }
+
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("Watch connectivity sessionDidBecomeInactive")
+    }
+
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("Watch connectivity sessionDidDeactivate")
+    }
+
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            if session.isPaired {
+                session.delegate = self
+                session.activate()
+            }
+        }
+
         return true
     }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import WatchConnectivity
 
 struct Vector {
     var x: Double
@@ -73,15 +74,43 @@ class ViewController: UIViewController {
 //            print("peak acceleration: \(peakAcceleration)")
             
 //            print("\(accumulatedVelocityAlongGravity), \(accelerationAlongGravity), \(horizontalVector)")
-            print("\(data.attitude.yaw), \(data.attitude.pitch), \(data.attitude.roll)")
-            
+//            print("\(data.attitude.yaw), \(data.attitude.pitch), \(data.attitude.roll)")
+
 //            if (accumulatedVelocity > velocityTreshold && peakAcceleration > acceleration) {
 //                print("up movement")
 //            }
         }
 
     }
+    @IBAction func buttonTapped(_ sender: UIButton) {
+//        if WCSession.isSupported() {
+//            let session = WCSession.default
+//            if session.isPaired {
+//                session.delegate = self
+//                session.activate()
+//
+//            }
+//        }
+
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(["message" : "World"], replyHandler: nil, errorHandler: nil)
+        }
+    }
 
 
 }
 
+//extension ViewController: WCSessionDelegate {
+//    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+//        print("Watch connectivity session activationDidComplete")
+//    }
+//
+//    func sessionDidBecomeInactive(_ session: WCSession) {
+//        print("Watch connectivity sessionDidBecomeInactive")
+//    }
+//
+//    func sessionDidDeactivate(_ session: WCSession) {
+//        print("Watch connectivity sessionDidDeactivate")
+//    }
+//
+//}
