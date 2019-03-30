@@ -93,9 +93,18 @@ class ViewController: UIViewController {
 //        }
 
         if WCSession.default.isReachable {
-            WCSession.default.sendMessage(["message" : "World"], replyHandler: nil, errorHandler: nil)
+            WCSession.default.sendMessage(["message" : "Hello"], replyHandler: { (reply) in
+                print(reply["message"]!)
+            }, errorHandler: nil)
         }
     }
+    
+    @IBAction func toggleWorkoutTapped(_ sender: UIButton) {
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(["message" : "Workout"], replyHandler: nil, errorHandler: nil)
+        }
+    }
+    
 
 
 }

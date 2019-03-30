@@ -32,11 +32,20 @@
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lf7-9G-BHO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsM-aK-Sl2">
+                                <rect key="frame" x="133.5" y="564" width="108" height="30"/>
+                                <state key="normal" title="Toggle Workout"/>
+                                <connections>
+                                    <action selector="toggleWorkoutTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oM9-a2-4jr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nsM-aK-Sl2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3vz-1r-4NW"/>
                             <constraint firstItem="AKI-Jf-EV4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="57D-Q4-HfX"/>
                             <constraint firstItem="AKI-Jf-EV4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P8l-Nd-MsP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nsM-aK-Sl2" secondAttribute="bottom" constant="73" id="RvM-Yh-lxj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

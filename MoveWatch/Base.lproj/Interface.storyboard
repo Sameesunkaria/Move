@@ -14,14 +14,16 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MoveWatch" customModuleProvider="target">
                     <items>
-                        <group width="1" height="150" alignment="left" id="iRO-qT-UY2"/>
+                        <group width="1" height="109" alignment="left" id="iRO-qT-UY2"/>
+                        <group width="1" height="38" alignment="left" id="pyU-XC-hrE"/>
                     </items>
                     <connections>
                         <outlet property="interfaceGroup" destination="iRO-qT-UY2" id="59z-9d-aOf"/>
+                        <outlet property="workoutInterfaceGroup" destination="pyU-XC-hrE" id="YMi-uq-eEA"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="220" y="312"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
