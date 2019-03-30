@@ -9,26 +9,18 @@
 import WatchKit
 import WatchConnectivity
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("Watch connectivity session activationDidComplete")
-    }
-
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        print(message)
-    }
-
-
+class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
-        if WCSession.isSupported() {
-            let session = WCSession.default
-            session.delegate = self
-            session.activate()
-        }
     }
 
     func applicationDidBecomeActive() {
+        if WCSession.isSupported(), WCSession.default.activationState == .notActivated {
+            let session = WCSession.default
+            session.delegate = (WKExtension.shared().rootInterfaceController as! InterfaceController)
+            session.activate()
+        }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
