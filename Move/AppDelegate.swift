@@ -33,10 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
         if WCSession.isSupported() {
             let session = WCSession.default
-            if session.isPaired {
-                session.delegate = self
-                session.activate()
-            }
+            session.delegate = self
+            session.activate()
         }
 
         return true
