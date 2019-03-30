@@ -21,6 +21,7 @@
 		3313FD51224FB50900005A01 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313FD50224FB50900005A01 /* NotificationController.swift */; };
 		3313FD53224FB50900005A01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3313FD52224FB50900005A01 /* Assets.xcassets */; };
 		3313FD58224FB50900005A01 /* MoveWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3313FD3B224FB50700005A01 /* MoveWatch.app */; };
+		33FC2EC022500CD70097688B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FC2EBF22500CD70097688B /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		3313FD52224FB50900005A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3313FD54224FB50900005A01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3313FD55224FB50900005A01 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		33FC2EBF22500CD70097688B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		33FC2EC122500CD70097688B /* MoveWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MoveWatch Extension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33FC2EC022500CD70097688B /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +116,7 @@
 				3313FD3C224FB50700005A01 /* MoveWatch */,
 				3313FD4B224FB50900005A01 /* MoveWatch Extension */,
 				30CD4F9D224CF80D00AB3A55 /* Products */,
+				33FC2EBE22500CD70097688B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +157,7 @@
 		3313FD4B224FB50900005A01 /* MoveWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				33FC2EC122500CD70097688B /* MoveWatch Extension.entitlements */,
 				3313FD4C224FB50900005A01 /* InterfaceController.swift */,
 				3313FD4E224FB50900005A01 /* ExtensionDelegate.swift */,
 				3313FD50224FB50900005A01 /* NotificationController.swift */,
@@ -160,6 +166,14 @@
 				3313FD55224FB50900005A01 /* PushNotificationPayload.apns */,
 			);
 			path = "MoveWatch Extension";
+			sourceTree = "<group>";
+		};
+		33FC2EBE22500CD70097688B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33FC2EBF22500CD70097688B /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,12 +244,25 @@
 				TargetAttributes = {
 					30CD4F9B224CF80D00AB3A55 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+						};
 					};
 					3313FD3A224FB50700005A01 = {
 						CreatedOnToolsVersion = 10.1;
 					};
 					3313FD46224FB50900005A01 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 1;
+							};
+							com.apple.HealthKit.watchos = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -474,7 +501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				INFOPLIST_FILE = Move/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -492,7 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				INFOPLIST_FILE = Move/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -511,7 +538,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				IBSC_MODULE = MoveWatch_Extension;
 				INFOPLIST_FILE = MoveWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.designers.Move.watchkitapp;
@@ -530,7 +557,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				IBSC_MODULE = MoveWatch_Extension;
 				INFOPLIST_FILE = MoveWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.designers.Move.watchkitapp;
@@ -547,8 +574,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "MoveWatch Extension/MoveWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				INFOPLIST_FILE = "MoveWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -569,8 +597,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "MoveWatch Extension/MoveWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9VSYQ6QW3Z;
+				DEVELOPMENT_TEAM = 47YH33JD86;
 				INFOPLIST_FILE = "MoveWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
