@@ -15,7 +15,8 @@ import HealthKit
 class InterfaceController: WKInterfaceController {
     
     @IBOutlet var interfaceGroup: WKInterfaceGroup!
-
+    @IBOutlet var workoutInterfaceGroup: WKInterfaceGroup!
+    
     var workoutSession: HKWorkoutSession?
     let healthStore = HKHealthStore()
     
@@ -55,23 +56,42 @@ extension InterfaceController: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        
+        if workoutSession == nil {
+            
+            let workoutConfiguration = HKWorkoutConfiguration()
+            workoutConfiguration.activityType = .other
+            workoutConfiguration.locationType = .indoor
+            
+            do {
+                self.workoutSession = try HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
+                self.workoutSession!.startActivity(with: Date())
+                
+                DispatchQueue.main.async {
+                    self.workoutInterfaceGroup.setBackgroundColor(.green)
+                }
+                
+            } catch {
+                print("could not start a workout")
+            }
+            
+        } else {
+            self.workoutSession?.end()
+            self.workoutSession = nil
+            DispatchQueue.main.async {
+                self.workoutInterfaceGroup.setBackgroundColor(.black)
+            }
+        }
+
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         
         guard manager.isAccelerometerAvailable else { fatalError("Accelerometer not available") }
         manager.deviceMotionUpdateInterval = sampleInterval
         
         if !movementIsStarted {
-
+            
             DispatchQueue.main.async {
-                let workoutConfiguration = HKWorkoutConfiguration()
-                workoutConfiguration.activityType = .other
-                workoutConfiguration.locationType = .indoor
-
-                if self.workoutSession == nil {
-                    self.workoutSession = try? HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
-            }
-
-
                 self.interfaceGroup.setBackgroundColor(.red)
             }
             
@@ -97,6 +117,7 @@ extension InterfaceController: WCSessionDelegate {
             }
             
             movementIsStarted = true
+            replyHandler(["message" : "started"])
         } else {
             
             DispatchQueue.main.async {
@@ -120,11 +141,8 @@ extension InterfaceController: WCSessionDelegate {
             accelerationAlongZBuffer = []
             
             movementIsStarted = false
-
-            DispatchQueue.main.async {
-                self.workoutSession?.end()
-                self.workoutSession = nil
-            }
+            replyHandler(["message" : "\(accumulatedVelocityAlongX), \(accumulatedVelocityAlongY), \(accumulatedVelocityAlongZ), \(pitchChange), \(rollChange), \(yawChange)"])
+            
         }
         
     }
