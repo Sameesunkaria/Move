@@ -121,8 +121,6 @@ class InterfaceController: WKInterfaceController {
 extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("Watch connectivity session activationDidComplete")
-        setupMotionDataCapture()
-        setupWorkoutSession()
     }
     
     func sessionReachabilityDidChange(_ session: WCSession) {
@@ -134,9 +132,11 @@ extension InterfaceController: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if message[ "message" ] as? String == "start" {
+        if message["message"] as? String == "start" {
+            setupMotionDataCapture()
+            setupWorkoutSession()
             DispatchQueue.main.async {
-                self.watchLabel.setText("well, there should be a text")
+                self.watchLabel.setText("well, there should be some text")
             }
         }
     }
