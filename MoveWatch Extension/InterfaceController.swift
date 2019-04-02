@@ -131,13 +131,23 @@ extension InterfaceController: WCSessionDelegate {
         }
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         if message["message"] as? String == "start" {
             setupMotionDataCapture()
             setupWorkoutSession()
             DispatchQueue.main.async {
                 self.watchLabel.setText("well, there should be some text")
             }
+            replyHandler(["message" : "started"])
+        }
+        
+        if message["message"] as? String == "stop" {
+            endWorkoutSession()
+            manager.stopDeviceMotionUpdates()
+            DispatchQueue.main.async {
+                self.watchLabel.setText("Go to your iPhone to start!")
+            }
+            replyHandler(["message" : "stopped"])
         }
     }
     

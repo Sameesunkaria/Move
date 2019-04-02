@@ -13,6 +13,7 @@ import WatchConnectivity
 class ViewController: UIViewController {
 
     @IBOutlet var textLabel: UILabel!
+    @IBOutlet var stopButton: UIButton!
     var timer: Timer?
 
     var lastAction: Action?
@@ -21,6 +22,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startGame)))
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     @objc func startGame() {
@@ -32,6 +37,7 @@ class ViewController: UIViewController {
     }
 
     func setupGame() {
+        stopButton.isHidden = false
         showNewAction()
         refreshTimer()
     }
@@ -54,6 +60,16 @@ class ViewController: UIViewController {
         lastAction = newAction
     }
     
+    @IBAction func stopTapped(_ sender: Any) {
+        WCSession.default.sendMessage(["message" : "stop"], replyHandler: { (reply) in
+            DispatchQueue.main.async {
+                self.timer?.invalidate()
+                self.textLabel.text = "TAP TO START!"
+                self.view.backgroundColor = #colorLiteral(red: 0.7058823529, green: 0.6431372549, blue: 0.6901960784, alpha: 1)
+                self.stopButton.isHidden = true
+            }
+        }, errorHandler: nil)
+    }
 }
 
 extension ViewController: WCSessionDelegate {
@@ -80,6 +96,7 @@ extension ViewController: WCSessionDelegate {
         if action == lastAction {
             DispatchQueue.main.async {
                 self.showNewAction()
+                self.refreshTimer()
             }
         }
     }
