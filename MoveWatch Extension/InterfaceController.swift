@@ -14,8 +14,7 @@ import HealthKit
 
 class InterfaceController: WKInterfaceController {
     
-    @IBOutlet var interfaceGroup: WKInterfaceGroup!
-    @IBOutlet var workoutInterfaceGroup: WKInterfaceGroup!
+    @IBOutlet var watchLabel: WKInterfaceLabel!
     
     var workoutSession: HKWorkoutSession?
     let healthStore = HKHealthStore()
@@ -25,8 +24,9 @@ class InterfaceController: WKInterfaceController {
     var lastThreshold = Date()
     let sampleInterval = 1 / 50.0
 
-//    let accelerationPerpendicularToXBuffer = RunningBuffer(size: 50)
-    var movementIsStarted = false
+
+    var recentlyDetected = false
+    var counter = 0
     
     var accumuletedAccelerationAlongGravity = 0.0
     var accumulatedAccelerationAlongX = 0.0
@@ -47,9 +47,6 @@ class InterfaceController: WKInterfaceController {
             self.workoutSession = try HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
             self.workoutSession!.startActivity(with: Date())
             
-            DispatchQueue.main.async {
-                self.workoutInterfaceGroup.setBackgroundColor(.green)
-            }
             
         } catch {
             print("could not start a workout")
@@ -59,9 +56,6 @@ class InterfaceController: WKInterfaceController {
     func endWorkoutSession() {
         self.workoutSession?.end()
         self.workoutSession = nil
-        DispatchQueue.main.async {
-            self.workoutInterfaceGroup.setBackgroundColor(.black)
-        }
     }
     
     func setupMotionDataCapture() {
@@ -83,19 +77,32 @@ class InterfaceController: WKInterfaceController {
                     data.rotationRate.y * data.gravity.y +
                     data.rotationRate.z * data.gravity.z
             
-            if 4.5 < accelerationAlongX, accelerationAlongGravity < -3.75 {
-                WCSession.default.sendMessage(["message" : "hurray"], replyHandler: nil, errorHandler: nil)
-                
-                print("hurray")
-            } else if 4.5 < accelerationAlongX {
-                WCSession.default.sendMessage(["message" : "punch"], replyHandler: nil, errorHandler: nil)
-
-                print("punch")
-            } else if 1 < accelerationAlongX, accelerationAlongX < 4.5, 5.5 < rateAlongGravity, rateAlongGravity < 10, -1 < accelerationAlongGravity, accelerationAlongGravity < 0 {
-                WCSession.default.sendMessage(["message" : "clap"], replyHandler: nil, errorHandler: nil)
-                
-                print("clap")
+            self.counter += 1
+            if self.counter == 25 {
+                self.recentlyDetected = false
+                self.counter = 0
             }
+            
+            if !self.recentlyDetected {
+                if 4.5 < accelerationAlongX, accelerationAlongGravity < -3.75 {
+                    WCSession.default.sendMessage(["message" : "hurray"], replyHandler: nil, errorHandler: nil)
+                    
+                    print("hurray")
+                    self.recentlyDetected = true
+                } else if 4.5 < accelerationAlongX {
+                    WCSession.default.sendMessage(["message" : "punch"], replyHandler: nil, errorHandler: nil)
+                    
+                    print("punch")
+                    self.recentlyDetected = true
+                } else if 1 < accelerationAlongX, accelerationAlongX < 4.5, 5.5 < rateAlongGravity, rateAlongGravity < 10, -1 < accelerationAlongGravity, accelerationAlongGravity < 0 {
+                    WCSession.default.sendMessage(["message" : "clap"], replyHandler: nil, errorHandler: nil)
+
+                    print("clap")
+                    self.recentlyDetected = true
+                }
+            }
+            
+            
         }
     }
     
@@ -125,6 +132,15 @@ extension InterfaceController: WCSessionDelegate {
             setupWorkoutSession()
         }
     }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if message[ "message" ] as? String == "start" {
+            DispatchQueue.main.async {
+                self.watchLabel.setText("well, there should be a text")
+            }
+        }
+    }
+    
 //
 //    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
 //        if workoutSession == nil {
