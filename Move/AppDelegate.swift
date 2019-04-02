@@ -10,21 +10,21 @@ import UIKit
 import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-//        session.sendMessage(["message" : "Hello"], replyHandler: { (reply) in
-//            print(reply["message"]!)
-//        }, errorHandler: nil)
-        print("Watch connectivity session activationDidComplete")
-    }
-
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        print("Watch connectivity sessionDidBecomeInactive")
-    }
-
-    func sessionDidDeactivate(_ session: WCSession) {
-        print("Watch connectivity sessionDidDeactivate")
-    }
+class AppDelegate: UIResponder, UIApplicationDelegate { //, WCSessionDelegate {
+//    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+////        session.sendMessage(["message" : "Hello"], replyHandler: { (reply) in
+////            print(reply["message"]!)
+////        }, errorHandler: nil)
+//        print("Watch connectivity session activationDidComplete")
+//    }
+//
+//    func sessionDidBecomeInactive(_ session: WCSession) {
+//        print("Watch connectivity sessionDidBecomeInactive")
+//    }
+//
+//    func sessionDidDeactivate(_ session: WCSession) {
+//        print("Watch connectivity sessionDidDeactivate")
+//    }
 
 
     var window: UIWindow?
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
         if WCSession.isSupported() {
             let session = WCSession.default
-            session.delegate = self
+            session.delegate = window?.rootViewController as? ViewController
             session.activate()
         }
 
