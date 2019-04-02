@@ -24,18 +24,79 @@ class InterfaceController: WKInterfaceController {
     
     var lastThreshold = Date()
     let sampleInterval = 1 / 50.0
-    var accelerationAlongXBuffer = [Double]()
-    var accelerationAlongYBuffer = [Double]()
-    var accelerationAlongZBuffer = [Double]()
-    var pitchBuffer = [Double]()
-    var rollBuffer = [Double]()
-    var yawBuffer = [Double]()
+
+//    let accelerationPerpendicularToXBuffer = RunningBuffer(size: 50)
     var movementIsStarted = false
+    
+    var accumuletedAccelerationAlongGravity = 0.0
+    var accumulatedAccelerationAlongX = 0.0
+    var accumulatedRateAlongGravity = 0.0
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
         // Configure interface objects here.
+    }
+    
+    func setupWorkoutSession() {
+        let workoutConfiguration = HKWorkoutConfiguration()
+        workoutConfiguration.activityType = .other
+        workoutConfiguration.locationType = .indoor
+        
+        do {
+            self.workoutSession = try HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
+            self.workoutSession!.startActivity(with: Date())
+            
+            DispatchQueue.main.async {
+                self.workoutInterfaceGroup.setBackgroundColor(.green)
+            }
+            
+        } catch {
+            print("could not start a workout")
+        }
+    }
+    
+    func endWorkoutSession() {
+        self.workoutSession?.end()
+        self.workoutSession = nil
+        DispatchQueue.main.async {
+            self.workoutInterfaceGroup.setBackgroundColor(.black)
+        }
+    }
+    
+    func setupMotionDataCapture() {
+        guard manager.isAccelerometerAvailable else { fatalError("Accelerometer not available") }
+        manager.deviceMotionUpdateInterval = sampleInterval
+
+        manager.startDeviceMotionUpdates(using: .xArbitraryZVertical, to: .main) { (data, error) in
+            guard let data = data, error == nil else { return }
+            
+            let accelerationAlongX = data.userAcceleration.x // along arm
+            
+            let accelerationAlongGravity =
+                data.userAcceleration.x * data.gravity.x +
+                    data.userAcceleration.y * data.gravity.y +
+                    data.userAcceleration.z * data.gravity.z
+            
+            let rateAlongGravity =
+                data.rotationRate.x * data.gravity.x +
+                    data.rotationRate.y * data.gravity.y +
+                    data.rotationRate.z * data.gravity.z
+            
+            if 4.5 < accelerationAlongX, accelerationAlongGravity < -3.75 {
+                WCSession.default.sendMessage(["message" : "hurray"], replyHandler: nil, errorHandler: nil)
+                
+                print("hurray")
+            } else if 4.5 < accelerationAlongX {
+                WCSession.default.sendMessage(["message" : "punch"], replyHandler: nil, errorHandler: nil)
+
+                print("punch")
+            } else if 1 < accelerationAlongX, accelerationAlongX < 4.5, 5.5 < rateAlongGravity, rateAlongGravity < 10, -1 < accelerationAlongGravity, accelerationAlongGravity < 0 {
+                WCSession.default.sendMessage(["message" : "clap"], replyHandler: nil, errorHandler: nil)
+                
+                print("clap")
+            }
+        }
     }
     
     override func willActivate() {
@@ -53,99 +114,110 @@ class InterfaceController: WKInterfaceController {
 extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("Watch connectivity session activationDidComplete")
+        setupMotionDataCapture()
+        setupWorkoutSession()
     }
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if workoutSession == nil {
-            
-            let workoutConfiguration = HKWorkoutConfiguration()
-            workoutConfiguration.activityType = .other
-            workoutConfiguration.locationType = .indoor
-            
-            do {
-                self.workoutSession = try HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
-                self.workoutSession!.startActivity(with: Date())
-                
-                DispatchQueue.main.async {
-                    self.workoutInterfaceGroup.setBackgroundColor(.green)
-                }
-                
-            } catch {
-                print("could not start a workout")
-            }
-            
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        if !session.isReachable {
+            endWorkoutSession()
         } else {
-            self.workoutSession?.end()
-            self.workoutSession = nil
-            DispatchQueue.main.async {
-                self.workoutInterfaceGroup.setBackgroundColor(.black)
-            }
+            setupWorkoutSession()
         }
-
     }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        
-        guard manager.isAccelerometerAvailable else { fatalError("Accelerometer not available") }
-        manager.deviceMotionUpdateInterval = sampleInterval
-        
-        if !movementIsStarted {
-            
-            DispatchQueue.main.async {
-                self.interfaceGroup.setBackgroundColor(.red)
-            }
-            
-            manager.startDeviceMotionUpdates(using: .xArbitraryZVertical, to: .main) {
-                [weak self] (data, error) in
-                
-                guard let self = self, let data = data, error == nil else {
-                    return
-                }
-                
-                let accelerationAlongX = data.userAcceleration.x
-                let accelerationAlongY = data.userAcceleration.y
-                let accelerationAlongZ = data.userAcceleration.z
-                
-                self.accelerationAlongXBuffer.append(accelerationAlongX)
-                self.accelerationAlongYBuffer.append(accelerationAlongY)
-                self.accelerationAlongZBuffer.append(accelerationAlongZ)
-                
-                self.pitchBuffer.append(data.attitude.pitch)
-                self.rollBuffer.append(data.attitude.roll)
-                self.yawBuffer.append(data.attitude.yaw)
-                
-            }
-            
-            movementIsStarted = true
-            replyHandler(["message" : "started"])
-        } else {
-            
-            DispatchQueue.main.async {
-                self.interfaceGroup.setBackgroundColor(.black)
-            }
-            
-            let accumulatedVelocityAlongX = self.accelerationAlongXBuffer.reduce(0.0, +) * self.sampleInterval
-            let accumulatedVelocityAlongY = self.accelerationAlongYBuffer.reduce(0.0, +) * self.sampleInterval
-            let accumulatedVelocityAlongZ = self.accelerationAlongZBuffer.reduce(0.0, +) * self.sampleInterval
-            
-            guard !pitchBuffer.isEmpty, !rollBuffer.isEmpty, !yawBuffer.isEmpty else { return }
-            
-            let pitchChange = pitchBuffer.last! - pitchBuffer.first!
-            let rollChange = rollBuffer.last! - rollBuffer.first!
-            let yawChange = yawBuffer.last! - yawBuffer.first!
-            
-            print("\(accumulatedVelocityAlongX), \(accumulatedVelocityAlongY), \(accumulatedVelocityAlongZ), \(pitchChange), \(rollChange), \(yawChange)")
-            
-            accelerationAlongXBuffer = []
-            accelerationAlongYBuffer = []
-            accelerationAlongZBuffer = []
-            
-            movementIsStarted = false
-            replyHandler(["message" : "\(accumulatedVelocityAlongX), \(accumulatedVelocityAlongY), \(accumulatedVelocityAlongZ), \(pitchChange), \(rollChange), \(yawChange)"])
-            
-        }
-        
-    }
+//
+//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+//        if workoutSession == nil {
+//
+//            let workoutConfiguration = HKWorkoutConfiguration()
+//            workoutConfiguration.activityType = .other
+//            workoutConfiguration.locationType = .indoor
+//
+//            do {
+//                self.workoutSession = try HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
+//                self.workoutSession!.startActivity(with: Date())
+//
+//                DispatchQueue.main.async {
+//                    self.workoutInterfaceGroup.setBackgroundColor(.green)
+//                }
+//
+//            } catch {
+//                print("could not start a workout")
+//            }
+//
+//        } else {
+//            self.workoutSession?.end()
+//            self.workoutSession = nil
+//            DispatchQueue.main.async {
+//                self.workoutInterfaceGroup.setBackgroundColor(.black)
+//            }
+//        }
+//
+//    }
+//
+//    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+//
+//        guard manager.isAccelerometerAvailable else { fatalError("Accelerometer not available") }
+//        manager.deviceMotionUpdateInterval = sampleInterval
+//
+//        if !movementIsStarted {
+//
+//            DispatchQueue.main.async {
+//                self.interfaceGroup.setBackgroundColor(.red)
+//            }
+//
+//            manager.startDeviceMotionUpdates(using: .xArbitraryZVertical, to: .main) {
+//                [weak self] (data, error) in
+//
+//                guard let self = self, let data = data, error == nil else {
+//                    return
+//                }
+//
+//                let accelerationAlongX = data.userAcceleration.x // along arm
+//
+//                let accelerationAlongGravity =
+//                    data.userAcceleration.x * data.gravity.x +
+//                    data.userAcceleration.y * data.gravity.y +
+//                    data.userAcceleration.z * data.gravity.z
+//
+//                let rateAlongGravity =
+//                    data.rotationRate.x * data.gravity.x +
+//                    data.rotationRate.y * data.gravity.y +
+//                    data.rotationRate.z * data.gravity.z
+//
+//                if 4.5 < accelerationAlongX, accelerationAlongGravity < -3.75 {
+//                    print("hurray")
+//                } else if 4.5 < accelerationAlongX {
+//                    print("punch")
+//                } else if
+//                    1 < accelerationAlongX, accelerationAlongX < 4.5,
+//                    5.5 < rateAlongGravity, rateAlongGravity < 10,
+//                    -1 < accelerationAlongGravity, accelerationAlongGravity < 0 {
+//                    print("clap")
+//                }
+//
+//
+//
+////                print("\(accelerationAlongX), \(self.accumulatedAccelerationAlongX), \(rateAlongGravity), \(self.accumulatedRateAlongGravity), \(accelerationAlongGravity), \(self.accumuletedAccelerationAlongGravity)")
+//
+//
+//
+//
+//            }
+//
+//
+//            movementIsStarted = true
+//            replyHandler(["message" : " \(accumulatedAccelerationAlongX), \(accumulatedRateAlongGravity), \(accumulatedRateAlongGravity)"])
+//        } else {
+//
+//
+//            movementIsStarted = false
+//            replyHandler(["message" : "ended"])
+//
+//        }
+//
+//    }
     
 
 }
+
