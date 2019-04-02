@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,37 +18,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKI-Jf-EV4">
-                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
-                                <color key="backgroundColor" red="0.85882352939999995" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="BZA-Ao-g1Y"/>
-                                    <constraint firstAttribute="height" constant="200" id="gDd-zC-7o2"/>
-                                </constraints>
-                                <state key="normal" title="Tap">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAP TO START!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARy-TK-fNs">
+                                <rect key="frame" x="20" y="256" width="335" height="155.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="65"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2i-1O-c3A">
+                                <rect key="frame" x="18" y="20" width="42" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                <state key="normal" title="STOP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lf7-9G-BHO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsM-aK-Sl2">
-                                <rect key="frame" x="133.5" y="564" width="108" height="30"/>
-                                <state key="normal" title="Toggle Workout"/>
-                                <connections>
-                                    <action selector="toggleWorkoutTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oM9-a2-4jr"/>
+                                    <action selector="stopTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BvT-Ky-B0X"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.70588235294117641" green="0.64313725490196072" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="nsM-aK-Sl2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3vz-1r-4NW"/>
-                            <constraint firstItem="AKI-Jf-EV4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="57D-Q4-HfX"/>
-                            <constraint firstItem="AKI-Jf-EV4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P8l-Nd-MsP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nsM-aK-Sl2" secondAttribute="bottom" constant="73" id="RvM-Yh-lxj"/>
+                            <constraint firstItem="ARy-TK-fNs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5CL-lQ-NiS"/>
+                            <constraint firstItem="X2i-1O-c3A" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cJ6-rl-8sa"/>
+                            <constraint firstItem="ARy-TK-fNs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dlh-Sr-U0V"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ARy-TK-fNs" secondAttribute="trailing" constant="20" id="kCh-JH-tlZ"/>
+                            <constraint firstItem="ARy-TK-fNs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="sRV-bJ-n1k"/>
+                            <constraint firstItem="X2i-1O-c3A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="18" id="xux-qc-Z6U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="stopButton" destination="X2i-1O-c3A" id="Cd6-AV-s81"/>
+                        <outlet property="textLabel" destination="ARy-TK-fNs" id="R9l-GJ-65a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

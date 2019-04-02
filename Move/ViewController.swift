@@ -10,116 +10,94 @@ import UIKit
 import CoreMotion
 import WatchConnectivity
 
-struct Vector {
-    var x: Double
-    var y: Double
-    var z: Double
-
-    static let zero = Vector(x: 0, y: 0, z: 0)
-}
-
 class ViewController: UIViewController {
 
-    let manager = CMMotionManager()
-    var vector = Vector.zero
+    @IBOutlet var textLabel: UILabel!
+    @IBOutlet var stopButton: UIButton!
+    var timer: Timer?
 
-    var lastThreshold = Date()
-    let sampleInterval = 1 / 50.0
-    let accelerationAlongGravityBuffer = RunningBuffer(size: 50)
-
-
+    var lastAction: Action?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard manager.isAccelerometerAvailable else { fatalError("Accelerometer not available") }
-
-        manager.deviceMotionUpdateInterval = sampleInterval
-
-        manager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical, to: .main) {
-            [weak self] (data, error) in
-
-            guard let self = self, let data = data, error == nil else {
-                return
-            }
-            
-            let horizontalVector = data.magneticField
-            
-            let accelerationAlongGravity =
-                data.userAcceleration.x * data.gravity.x +
-                data.userAcceleration.y * data.gravity.y +
-                data.userAcceleration.z * data.gravity.z
-            
-            let accelerationMagnitude =
-                pow(data.userAcceleration.x, 2) +
-                pow(data.userAcceleration.y, 2) +
-                pow(data.userAcceleration.z, 2)
-            
-            let accelerationPerpendicularToGravity = sqrt(accelerationMagnitude - pow(accelerationAlongGravity, 2))
-            
-            self.accelerationAlongGravityBuffer.addSample(accelerationAlongGravity)
-
-            
-            if !self.accelerationAlongGravityBuffer.isFull() {
-                return
-            }
-            
-            let accumulatedVelocityAlongGravity = self.accelerationAlongGravityBuffer.sum() * self.sampleInterval
-//            let accumulatedVelocityPerpendicularToGravity =
-
-            
-            
-//            let peakAcceleration = accumulatedVelocity > 0 ? self.accelerationAlongZBuffer.max() : self.accelerationAlongZBuffer.min()
-            
-//            print("accumulated velocity: \(accumulatedVelocity)")
-//            print("peak acceleration: \(peakAcceleration)")
-            
-//            print("\(accumulatedVelocityAlongGravity), \(accelerationAlongGravity), \(horizontalVector)")
-//            print("\(data.attitude.yaw), \(data.attitude.pitch), \(data.attitude.roll)")
-
-//            if (accumulatedVelocity > velocityTreshold && peakAcceleration > acceleration) {
-//                print("up movement")
-//            }
-        }
-
-    }
-    @IBAction func buttonTapped(_ sender: UIButton) {
-//        if WCSession.isSupported() {
-//            let session = WCSession.default
-//            if session.isPaired {
-//                session.delegate = self
-//                session.activate()
-//
-//            }
-//        }
-
-        if WCSession.default.isReachable {
-            WCSession.default.sendMessage(["message" : "Hello"], replyHandler: { (reply) in
-                print(reply["message"]!)
-            }, errorHandler: nil)
-        }
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startGame)))
     }
     
-    @IBAction func toggleWorkoutTapped(_ sender: UIButton) {
-        if WCSession.default.isReachable {
-            WCSession.default.sendMessage(["message" : "Workout"], replyHandler: nil, errorHandler: nil)
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    @objc func startGame() {
+        WCSession.default.sendMessage(["message" : "start"], replyHandler: { (reply) in
+            DispatchQueue.main.async {
+                self.setupGame()
+            }
+        }, errorHandler: nil)
+    }
+
+    func setupGame() {
+        stopButton.isHidden = false
+        showNewAction()
+        refreshTimer()
+    }
+
+    func refreshTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { (_) in
+            self.showNewAction()
+        })
+    }
+
+    func showNewAction() {
+        var newAction = Action.allCases.randomElement()!
+        while newAction == lastAction {
+            newAction = Action.allCases.randomElement()!
         }
+
+        textLabel.text = newAction.rawValue.uppercased()
+        view.backgroundColor = newAction.color()
+        lastAction = newAction
     }
     
-
-
+    @IBAction func stopTapped(_ sender: Any) {
+        WCSession.default.sendMessage(["message" : "stop"], replyHandler: { (reply) in
+            DispatchQueue.main.async {
+                self.timer?.invalidate()
+                self.textLabel.text = "TAP TO START!"
+                self.view.backgroundColor = #colorLiteral(red: 0.7058823529, green: 0.6431372549, blue: 0.6901960784, alpha: 1)
+                self.stopButton.isHidden = true
+            }
+        }, errorHandler: nil)
+    }
 }
 
-//extension ViewController: WCSessionDelegate {
-//    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-//        print("Watch connectivity session activationDidComplete")
-//    }
-//
-//    func sessionDidBecomeInactive(_ session: WCSession) {
-//        print("Watch connectivity sessionDidBecomeInactive")
-//    }
-//
-//    func sessionDidDeactivate(_ session: WCSession) {
-//        print("Watch connectivity sessionDidDeactivate")
-//    }
-//
-//}
+extension ViewController: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("Watch connectivity session activationDidComplete")
+    }
+
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("Watch connectivity sessionDidBecomeInactive")
+    }
+
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("Watch connectivity sessionDidDeactivate")
+    }
+
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        guard
+            let actionName = message["message"] as? String,
+            let action = Action(rawValue: actionName)
+        else {
+            return
+        }
+
+        if action == lastAction {
+            DispatchQueue.main.async {
+                self.showNewAction()
+                self.refreshTimer()
+            }
+        }
+    }
+}

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -14,12 +14,10 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MoveWatch" customModuleProvider="target">
                     <items>
-                        <group width="1" height="109" alignment="left" id="iRO-qT-UY2"/>
-                        <group width="1" height="38" alignment="left" id="pyU-XC-hrE"/>
+                        <label width="136" height="179" alignment="left" text="Go to your iPhone to start!" textAlignment="center" numberOfLines="0" id="ldv-lI-b2H"/>
                     </items>
                     <connections>
-                        <outlet property="interfaceGroup" destination="iRO-qT-UY2" id="59z-9d-aOf"/>
-                        <outlet property="workoutInterfaceGroup" destination="pyU-XC-hrE" id="YMi-uq-eEA"/>
+                        <outlet property="watchLabel" destination="ldv-lI-b2H" id="ul9-Qz-jV1"/>
                     </connections>
                 </controller>
             </objects>

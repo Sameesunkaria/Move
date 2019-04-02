@@ -13,6 +13,9 @@
 		30CD4FA5224CF80D00AB3A55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CD4FA3224CF80D00AB3A55 /* Main.storyboard */; };
 		30CD4FA7224CF81100AB3A55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30CD4FA6224CF81100AB3A55 /* Assets.xcassets */; };
 		30CD4FAA224CF81100AB3A55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CD4FA8224CF81100AB3A55 /* LaunchScreen.storyboard */; };
+		30FA072C2253C1960092147B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FA072B2253C1960092147B /* Action.swift */; };
+		30FA072D2253C1A30092147B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FA072B2253C1960092147B /* Action.swift */; };
+		30FA072F2253C2080092147B /* ActionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FA072E2253C2080092147B /* ActionColor.swift */; };
 		3313FD3F224FB50700005A01 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3313FD3D224FB50700005A01 /* Interface.storyboard */; };
 		3313FD41224FB50900005A01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3313FD40224FB50900005A01 /* Assets.xcassets */; };
 		3313FD48224FB50900005A01 /* MoveWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3313FD47224FB50900005A01 /* MoveWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -75,6 +78,8 @@
 		30CD4FA6224CF81100AB3A55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30CD4FA9224CF81100AB3A55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30CD4FAB224CF81100AB3A55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30FA072B2253C1960092147B /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		30FA072E2253C2080092147B /* ActionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionColor.swift; sourceTree = "<group>"; };
 		3313FD3B224FB50700005A01 /* MoveWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoveWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3313FD3E224FB50700005A01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		3313FD40224FB50900005A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 		30CD4F93224CF80D00AB3A55 = {
 			isa = PBXGroup;
 			children = (
+				30FA072A2253C1760092147B /* Shared Model */,
 				30CD4F9E224CF80D00AB3A55 /* Move */,
 				3313FD3C224FB50700005A01 /* MoveWatch */,
 				3313FD4B224FB50900005A01 /* MoveWatch Extension */,
@@ -136,12 +142,21 @@
 				23100882224E31F500D5A5E9 /* RunningBuffer.swift */,
 				30CD4F9F224CF80D00AB3A55 /* AppDelegate.swift */,
 				30CD4FA1224CF80D00AB3A55 /* ViewController.swift */,
+				30FA072E2253C2080092147B /* ActionColor.swift */,
 				30CD4FA3224CF80D00AB3A55 /* Main.storyboard */,
 				30CD4FA6224CF81100AB3A55 /* Assets.xcassets */,
 				30CD4FA8224CF81100AB3A55 /* LaunchScreen.storyboard */,
 				30CD4FAB224CF81100AB3A55 /* Info.plist */,
 			);
 			path = Move;
+			sourceTree = "<group>";
+		};
+		30FA072A2253C1760092147B /* Shared Model */ = {
+			isa = PBXGroup;
+			children = (
+				30FA072B2253C1960092147B /* Action.swift */,
+			);
+			path = "Shared Model";
 			sourceTree = "<group>";
 		};
 		3313FD3C224FB50700005A01 /* MoveWatch */ = {
@@ -322,6 +337,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				30CD4FA2224CF80D00AB3A55 /* ViewController.swift in Sources */,
+				30FA072F2253C2080092147B /* ActionColor.swift in Sources */,
+				30FA072C2253C1960092147B /* Action.swift in Sources */,
 				30CD4FA0224CF80D00AB3A55 /* AppDelegate.swift in Sources */,
 				23100883224E31F500D5A5E9 /* RunningBuffer.swift in Sources */,
 			);
@@ -332,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3313FD51224FB50900005A01 /* NotificationController.swift in Sources */,
+				30FA072D2253C1A30092147B /* Action.swift in Sources */,
 				3313FD4F224FB50900005A01 /* ExtensionDelegate.swift in Sources */,
 				3313FD4D224FB50900005A01 /* InterfaceController.swift in Sources */,
 			);
