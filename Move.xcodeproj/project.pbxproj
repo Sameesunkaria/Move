@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23100883224E31F500D5A5E9 /* RunningBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23100882224E31F500D5A5E9 /* RunningBuffer.swift */; };
 		30CD4FA0224CF80D00AB3A55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD4F9F224CF80D00AB3A55 /* AppDelegate.swift */; };
 		30CD4FA2224CF80D00AB3A55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CD4FA1224CF80D00AB3A55 /* ViewController.swift */; };
 		30CD4FA5224CF80D00AB3A55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CD4FA3224CF80D00AB3A55 /* Main.storyboard */; };
@@ -70,7 +69,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		23100882224E31F500D5A5E9 /* RunningBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningBuffer.swift; sourceTree = "<group>"; };
 		30CD4F9C224CF80D00AB3A55 /* Move.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Move.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30CD4F9F224CF80D00AB3A55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30CD4FA1224CF80D00AB3A55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 		30CD4F9E224CF80D00AB3A55 /* Move */ = {
 			isa = PBXGroup;
 			children = (
-				23100882224E31F500D5A5E9 /* RunningBuffer.swift */,
 				30CD4F9F224CF80D00AB3A55 /* AppDelegate.swift */,
 				30CD4FA1224CF80D00AB3A55 /* ViewController.swift */,
 				30FA072E2253C2080092147B /* ActionColor.swift */,
@@ -259,6 +256,7 @@
 				TargetAttributes = {
 					30CD4F9B224CF80D00AB3A55 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 0;
@@ -270,6 +268,7 @@
 					};
 					3313FD46224FB50900005A01 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.watchos.extension = {
 								enabled = 1;
@@ -340,7 +339,6 @@
 				30FA072F2253C2080092147B /* ActionColor.swift in Sources */,
 				30FA072C2253C1960092147B /* Action.swift in Sources */,
 				30CD4FA0224CF80D00AB3A55 /* AppDelegate.swift in Sources */,
-				23100883224E31F500D5A5E9 /* RunningBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +525,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zdesigners.Move;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -545,7 +543,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zdesigners.Move;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -605,7 +603,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};
@@ -628,7 +626,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 5.1;
 			};

@@ -126,8 +126,6 @@ extension InterfaceController: WCSessionDelegate {
     func sessionReachabilityDidChange(_ session: WCSession) {
         if !session.isReachable {
             endWorkoutSession()
-        } else {
-            setupWorkoutSession()
         }
     }
     
@@ -150,100 +148,5 @@ extension InterfaceController: WCSessionDelegate {
             replyHandler(["message" : "stopped"])
         }
     }
-    
-//
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-//        if workoutSession == nil {
-//
-//            let workoutConfiguration = HKWorkoutConfiguration()
-//            workoutConfiguration.activityType = .other
-//            workoutConfiguration.locationType = .indoor
-//
-//            do {
-//                self.workoutSession = try HKWorkoutSession(healthStore: self.healthStore, configuration: workoutConfiguration)
-//                self.workoutSession!.startActivity(with: Date())
-//
-//                DispatchQueue.main.async {
-//                    self.workoutInterfaceGroup.setBackgroundColor(.green)
-//                }
-//
-//            } catch {
-//                print("could not start a workout")
-//            }
-//
-//        } else {
-//            self.workoutSession?.end()
-//            self.workoutSession = nil
-//            DispatchQueue.main.async {
-//                self.workoutInterfaceGroup.setBackgroundColor(.black)
-//            }
-//        }
-//
-//    }
-//
-//    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-//
-//        guard manager.isAccelerometerAvailable else { fatalError("Accelerometer not available") }
-//        manager.deviceMotionUpdateInterval = sampleInterval
-//
-//        if !movementIsStarted {
-//
-//            DispatchQueue.main.async {
-//                self.interfaceGroup.setBackgroundColor(.red)
-//            }
-//
-//            manager.startDeviceMotionUpdates(using: .xArbitraryZVertical, to: .main) {
-//                [weak self] (data, error) in
-//
-//                guard let self = self, let data = data, error == nil else {
-//                    return
-//                }
-//
-//                let accelerationAlongX = data.userAcceleration.x // along arm
-//
-//                let accelerationAlongGravity =
-//                    data.userAcceleration.x * data.gravity.x +
-//                    data.userAcceleration.y * data.gravity.y +
-//                    data.userAcceleration.z * data.gravity.z
-//
-//                let rateAlongGravity =
-//                    data.rotationRate.x * data.gravity.x +
-//                    data.rotationRate.y * data.gravity.y +
-//                    data.rotationRate.z * data.gravity.z
-//
-//                if 4.5 < accelerationAlongX, accelerationAlongGravity < -3.75 {
-//                    print("hurray")
-//                } else if 4.5 < accelerationAlongX {
-//                    print("punch")
-//                } else if
-//                    1 < accelerationAlongX, accelerationAlongX < 4.5,
-//                    5.5 < rateAlongGravity, rateAlongGravity < 10,
-//                    -1 < accelerationAlongGravity, accelerationAlongGravity < 0 {
-//                    print("clap")
-//                }
-//
-//
-//
-////                print("\(accelerationAlongX), \(self.accumulatedAccelerationAlongX), \(rateAlongGravity), \(self.accumulatedRateAlongGravity), \(accelerationAlongGravity), \(self.accumuletedAccelerationAlongGravity)")
-//
-//
-//
-//
-//            }
-//
-//
-//            movementIsStarted = true
-//            replyHandler(["message" : " \(accumulatedAccelerationAlongX), \(accumulatedRateAlongGravity), \(accumulatedRateAlongGravity)"])
-//        } else {
-//
-//
-//            movementIsStarted = false
-//            replyHandler(["message" : "ended"])
-//
-//        }
-//
-//    }
-    
-
 }
 
