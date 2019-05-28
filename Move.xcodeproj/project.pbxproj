@@ -23,6 +23,14 @@
 		3313FD51224FB50900005A01 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3313FD50224FB50900005A01 /* NotificationController.swift */; };
 		3313FD53224FB50900005A01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3313FD52224FB50900005A01 /* Assets.xcassets */; };
 		3313FD58224FB50900005A01 /* MoveWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3313FD3B224FB50700005A01 /* MoveWatch.app */; };
+		33EE1F3F229C308F007721B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE1F3E229C308F007721B3 /* AppDelegate.swift */; };
+		33EE1F41229C308F007721B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE1F40229C308F007721B3 /* ViewController.swift */; };
+		33EE1F43229C3090007721B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33EE1F42229C3090007721B3 /* Assets.xcassets */; };
+		33EE1F46229C3090007721B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33EE1F44229C3090007721B3 /* Main.storyboard */; };
+		33EE1F4D229C3653007721B3 /* ActionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE1F4C229C3653007721B3 /* ActionColor.swift */; };
+		33EE1F4E229C367A007721B3 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FA072B2253C1960092147B /* Action.swift */; };
+		33EE1F50229D7357007721B3 /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE1F4F229D7357007721B3 /* ConnectivityManager.swift */; };
+		33EE1F51229D754D007721B3 /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE1F4F229D7357007721B3 /* ConnectivityManager.swift */; };
 		33FC2EC022500CD70097688B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FC2EBF22500CD70097688B /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +97,15 @@
 		3313FD52224FB50900005A01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3313FD54224FB50900005A01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3313FD55224FB50900005A01 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		33EE1F3C229C308F007721B3 /* Move-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Move-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33EE1F3E229C308F007721B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		33EE1F40229C308F007721B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		33EE1F42229C3090007721B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33EE1F45229C3090007721B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		33EE1F47229C3090007721B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33EE1F48229C3090007721B3 /* Move_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Move_mac.entitlements; sourceTree = "<group>"; };
+		33EE1F4C229C3653007721B3 /* ActionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionColor.swift; sourceTree = "<group>"; };
+		33EE1F4F229D7357007721B3 /* ConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
 		33FC2EBF22500CD70097688B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		33FC2EC122500CD70097688B /* MoveWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MoveWatch Extension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +126,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33EE1F39229C308F007721B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -119,6 +143,7 @@
 				30CD4F9E224CF80D00AB3A55 /* Move */,
 				3313FD3C224FB50700005A01 /* MoveWatch */,
 				3313FD4B224FB50900005A01 /* MoveWatch Extension */,
+				33EE1F3D229C308F007721B3 /* Move-mac */,
 				30CD4F9D224CF80D00AB3A55 /* Products */,
 				33FC2EBE22500CD70097688B /* Frameworks */,
 			);
@@ -130,6 +155,7 @@
 				30CD4F9C224CF80D00AB3A55 /* Move.app */,
 				3313FD3B224FB50700005A01 /* MoveWatch.app */,
 				3313FD47224FB50900005A01 /* MoveWatch Extension.appex */,
+				33EE1F3C229C308F007721B3 /* Move-mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +204,21 @@
 				3313FD55224FB50900005A01 /* PushNotificationPayload.apns */,
 			);
 			path = "MoveWatch Extension";
+			sourceTree = "<group>";
+		};
+		33EE1F3D229C308F007721B3 /* Move-mac */ = {
+			isa = PBXGroup;
+			children = (
+				33EE1F3E229C308F007721B3 /* AppDelegate.swift */,
+				33EE1F40229C308F007721B3 /* ViewController.swift */,
+				33EE1F4F229D7357007721B3 /* ConnectivityManager.swift */,
+				33EE1F4C229C3653007721B3 /* ActionColor.swift */,
+				33EE1F42229C3090007721B3 /* Assets.xcassets */,
+				33EE1F44229C3090007721B3 /* Main.storyboard */,
+				33EE1F47229C3090007721B3 /* Info.plist */,
+				33EE1F48229C3090007721B3 /* Move_mac.entitlements */,
+			);
+			path = "Move-mac";
 			sourceTree = "<group>";
 		};
 		33FC2EBE22500CD70097688B /* Frameworks */ = {
@@ -244,13 +285,30 @@
 			productReference = 3313FD47224FB50900005A01 /* MoveWatch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		33EE1F3B229C308F007721B3 /* Move-mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33EE1F4B229C3090007721B3 /* Build configuration list for PBXNativeTarget "Move-mac" */;
+			buildPhases = (
+				33EE1F38229C308F007721B3 /* Sources */,
+				33EE1F39229C308F007721B3 /* Frameworks */,
+				33EE1F3A229C308F007721B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Move-mac";
+			productName = "Move-mac";
+			productReference = 33EE1F3C229C308F007721B3 /* Move-mac.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		30CD4F94224CF80D00AB3A55 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = samar;
 				TargetAttributes = {
@@ -278,6 +336,9 @@
 							};
 						};
 					};
+					33EE1F3B229C308F007721B3 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 30CD4F97224CF80D00AB3A55 /* Build configuration list for PBXProject "Move" */;
@@ -296,6 +357,7 @@
 				30CD4F9B224CF80D00AB3A55 /* Move */,
 				3313FD3A224FB50700005A01 /* MoveWatch */,
 				3313FD46224FB50900005A01 /* MoveWatch Extension */,
+				33EE1F3B229C308F007721B3 /* Move-mac */,
 			);
 		};
 /* End PBXProject section */
@@ -328,6 +390,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33EE1F3A229C308F007721B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33EE1F43229C3090007721B3 /* Assets.xcassets in Resources */,
+				33EE1F46229C3090007721B3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -338,6 +409,7 @@
 				30CD4FA2224CF80D00AB3A55 /* ViewController.swift in Sources */,
 				30FA072F2253C2080092147B /* ActionColor.swift in Sources */,
 				30FA072C2253C1960092147B /* Action.swift in Sources */,
+				33EE1F51229D754D007721B3 /* ConnectivityManager.swift in Sources */,
 				30CD4FA0224CF80D00AB3A55 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +422,18 @@
 				30FA072D2253C1A30092147B /* Action.swift in Sources */,
 				3313FD4F224FB50900005A01 /* ExtensionDelegate.swift in Sources */,
 				3313FD4D224FB50900005A01 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33EE1F38229C308F007721B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33EE1F41229C308F007721B3 /* ViewController.swift in Sources */,
+				33EE1F4E229C367A007721B3 /* Action.swift in Sources */,
+				33EE1F4D229C3653007721B3 /* ActionColor.swift in Sources */,
+				33EE1F50229D7357007721B3 /* ConnectivityManager.swift in Sources */,
+				33EE1F3F229C308F007721B3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +475,14 @@
 				3313FD3E224FB50700005A01 /* Base */,
 			);
 			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		33EE1F44229C3090007721B3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33EE1F45229C3090007721B3 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -632,6 +724,48 @@
 			};
 			name = Release;
 		};
+		33EE1F49229C3090007721B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Move-mac/Move_mac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Move-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samar.Move-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		33EE1F4A229C3090007721B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Move-mac/Move_mac.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Move-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.samar.Move-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -667,6 +801,15 @@
 			buildConfigurations = (
 				3313FD59224FB50900005A01 /* Debug */,
 				3313FD5A224FB50900005A01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33EE1F4B229C3090007721B3 /* Build configuration list for PBXNativeTarget "Move-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33EE1F49229C3090007721B3 /* Debug */,
+				33EE1F4A229C3090007721B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
